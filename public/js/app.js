@@ -14,17 +14,15 @@ const locationOutput = document.querySelector('.output2');
 formSubmit.addEventListener('submit', (e) => {
   e.preventDefault();
 
-  fetch(`http://localhost:3000/weather?address=${formInput.value}`).then(
-    (response) => {
-      response.json().then((data) => {
-        if (data.error) {
-          weatherOutput.innerHTML = data.error;
-          locationOutput.innerHTML = '';
-        } else {
-          weatherOutput.innerHTML = data.location;
-          locationOutput.innerHTML = data.forecastData;
-        }
-      });
-    }
-  );
+  fetch(`/weather?address=${formInput.value}`).then((response) => {
+    response.json().then((data) => {
+      if (data.error) {
+        weatherOutput.innerHTML = data.error;
+        locationOutput.innerHTML = '';
+      } else {
+        weatherOutput.innerHTML = data.location;
+        locationOutput.innerHTML = data.forecastData;
+      }
+    });
+  });
 });
